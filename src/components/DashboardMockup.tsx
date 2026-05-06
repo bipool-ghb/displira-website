@@ -37,6 +37,7 @@ export default function DashboardMockup() {
       <div style={{
         background: 'white', borderRadius: 16, border: '1px solid #E5E7EB',
         boxShadow: '0 24px 64px rgba(0,0,0,0.12)', overflow: 'hidden',
+        textAlign: 'left',
       }}>
         {/* Browser chrome */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 16px', borderBottom: `1px solid ${borderLight}`, background: '#F8F9FC' }}>
