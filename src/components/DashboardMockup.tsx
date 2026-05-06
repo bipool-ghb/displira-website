@@ -4,9 +4,9 @@ import RevealOnScroll from './RevealOnScroll';
 
 const stats = [
   { label: 'TOTAL SCREENS', val: '12', sub: '8 registered', color: '#F97316' },
-  { label: 'PUBLISHED SCREENS', val: '9', sub: '3 unpublished', color: '#22C55E' },
+  { label: 'PUBLISHED', val: '9', sub: '3 unpublished', color: '#22C55E' },
   { label: 'DEVICES ONLINE', val: '7', sub: '85% uptime', color: '#3B82F6' },
-  { label: 'CONTENT ITEMS', val: '34', sub: 'items in library', color: '#8B5CF6' },
+  { label: 'CONTENT ITEMS', val: '34', sub: 'in library', color: '#8B5CF6' },
   { label: 'TOTAL DEVICES', val: '8', sub: '1 offline', color: '#EAB308' },
 ];
 
@@ -19,133 +19,125 @@ const activity = [
   { dot: '#3B82F6', text: 'Screen "Main Entrance" published', by: 'by Demo', time: '20m ago' },
 ];
 
-const sidebarSections: { label: string; items: { name: string; active?: boolean }[] }[] = [
-  { label: 'OVERVIEW', items: [{ name: 'Dashboard', active: true }] },
-  { label: 'MANAGEMENT', items: [
-    { name: 'Screens & Layouts' }, { name: 'Content Editor' }, { name: 'Devices' },
-    { name: 'Register Device' }, { name: 'Pair Fire TV' },
-  ]},
-  { label: 'TEAM', items: [{ name: 'Users & Roles' }] },
-  { label: 'OPERATIONS', items: [
-    { name: 'Publish' }, { name: 'Schedules' }, { name: 'Themes' }, { name: 'Reports' },
-  ]},
+const sidebarNav = [
+  { section: 'OVERVIEW', items: ['Dashboard'] },
+  { section: 'MANAGEMENT', items: ['Screens & Layouts', 'Content Editor', 'Devices', 'Register Device', 'Pair Fire TV'] },
+  { section: 'TEAM', items: ['Users & Roles'] },
+  { section: 'OPERATIONS', items: ['Publish', 'Schedules', 'Themes', 'Reports'] },
 ];
 
-const quickActions = ['+ New Screen', '+ Add Content', '↑ Publish All', '+ Invite User'];
-
 export default function DashboardMockup() {
+  const sidebarBg = '#1E2340';
+  const borderLight = '#F3F4F6';
+  const textLight = '#9CA3AF';
+  const textSec = '#6B7280';
+
   return (
     <RevealOnScroll className="w-full max-w-[860px] mx-auto">
-      <div className="rounded-2xl overflow-hidden border border-border" style={{ boxShadow: '0 24px 64px rgba(0,0,0,0.12)' }}>
-        {/* Browser Chrome */}
-        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border-light" style={{ background: '#F8F9FC' }}>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FF5F57' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FFBD2E' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#28C840' }} />
+      <div style={{
+        background: 'white', borderRadius: 16, border: '1px solid #E5E7EB',
+        boxShadow: '0 24px 64px rgba(0,0,0,0.12)', overflow: 'hidden',
+      }}>
+        {/* Browser chrome */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 16px', borderBottom: `1px solid ${borderLight}`, background: '#F8F9FC' }}>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <span style={{ width: 10, height: 10, borderRadius: 10, background: '#FF5F57' }} />
+            <span style={{ width: 10, height: 10, borderRadius: 10, background: '#FFBD2E' }} />
+            <span style={{ width: 10, height: 10, borderRadius: 10, background: '#28C840' }} />
           </div>
-          <span className="text-[11px] text-text-light ml-2">admin.displira.com/dashboard</span>
+          <span style={{ fontSize: 11, color: textLight, marginLeft: 8 }}>admin.displira.com/dashboard</span>
         </div>
 
-        {/* App Grid */}
-        <div className="grid md:grid-cols-[168px_1fr] bg-white" style={{ minHeight: 380 }}>
+        {/* App */}
+        <div style={{ display: 'grid', gridTemplateColumns: '168px 1fr', minHeight: 380 }}>
           {/* Sidebar */}
-          <div className="hidden md:flex flex-col p-2" style={{ background: '#1E2340' }}>
+          <div style={{ background: sidebarBg, padding: '12px 8px', display: 'flex', flexDirection: 'column' }}>
             {/* Logo */}
-            <div className="flex items-center gap-2 px-2 pt-1 pb-3">
-              <span className="w-6 h-6 rounded-md flex items-center justify-center text-[12px] font-extrabold text-white" style={{ background: '#0D8A6A' }}>D</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 8px 12px' }}>
+              <span style={{ width: 24, height: 24, borderRadius: 6, background: '#0D8A6A', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: 'white' }}>D</span>
               <div>
-                <div className="text-[12px] font-bold text-white leading-tight">Displira</div>
-                <div className="text-[8px]" style={{ color: 'rgba(255,255,255,0.35)' }}>Admin Portal</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: 'white', lineHeight: 1.1 }}>Displira</div>
+                <div style={{ fontSize: 8, color: 'rgba(255,255,255,0.35)' }}>Admin Portal</div>
               </div>
             </div>
-
-            {/* Nav Items */}
-            {sidebarSections.map((section) => (
-              <div key={section.label}>
-                <div className="uppercase tracking-wider px-3.5 mt-1" style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)', paddingTop: 12, paddingBottom: 4 }}>
-                  {section.label}
+            {/* Nav */}
+            {sidebarNav.map((group) => (
+              <div key={group.section}>
+                <div style={{ fontSize: 9, fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)', padding: '12px 14px 4px', marginTop: 4 }}>
+                  {group.section}
                 </div>
-                {section.items.map((item) => (
-                  <div
-                    key={item.name}
-                    className="rounded-md mb-px whitespace-nowrap"
-                    style={{
-                      padding: '7px 14px',
-                      fontSize: 11.5,
-                      fontWeight: 500,
-                      color: item.active ? 'white' : 'rgba(255,255,255,0.55)',
-                      background: item.active ? '#0D8A6A' : 'transparent',
-                    }}
-                  >
-                    {item.name}
-                  </div>
-                ))}
+                {group.items.map((item) => {
+                  const active = item === 'Dashboard';
+                  return (
+                    <div key={item} style={{
+                      padding: '7px 14px', borderRadius: 6, fontSize: 11.5, fontWeight: 500, marginBottom: 1,
+                      whiteSpace: 'nowrap' as const,
+                      color: active ? 'white' : 'rgba(255,255,255,0.55)',
+                      background: active ? '#0D8A6A' : 'transparent',
+                    }}>
+                      {item}
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>
 
-          {/* Main Content */}
-          <div className="p-4 md:px-5 md:py-4 overflow-hidden">
+          {/* Main content */}
+          <div style={{ padding: '16px 20px', overflow: 'hidden' }}>
             {/* Breadcrumb */}
-            <div className="text-[10px] text-text-light mb-1">
-              Overview &nbsp;›&nbsp; <span className="text-text">Dashboard</span>
+            <div style={{ fontSize: 10, color: textLight, marginBottom: 4 }}>
+              Overview &nbsp;›&nbsp; <span style={{ color: '#111827' }}>Dashboard</span>
             </div>
-
-            {/* Header */}
-            <div className="flex justify-between items-center mb-4">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
               <div>
-                <div className="text-[17px] font-bold tracking-tight">Dashboard</div>
-                <div className="text-[10px] text-text-light">Overview of your digital signage network</div>
+                <div style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em' }}>Dashboard</div>
+                <div style={{ fontSize: 10, color: textLight }}>Overview of your digital signage network</div>
               </div>
-              <div className="text-[10px] text-text-secondary flex items-center gap-1">↻ Refresh</div>
+              <div style={{ fontSize: 10, color: textSec, display: 'flex', alignItems: 'center', gap: 4 }}>↻ Refresh</div>
             </div>
 
-            {/* Stat Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-5">
+            {/* Stat cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8, marginBottom: 20 }}>
               {stats.map((s) => (
-                <div key={s.label} className="rounded-lg border border-border-light bg-white" style={{ padding: '10px 12px', borderTop: `2.5px solid ${s.color}` }}>
-                  <div className="uppercase tracking-wide mb-1.5" style={{ fontSize: 8, fontWeight: 600, letterSpacing: '0.04em', color: s.color }}>{s.label}</div>
-                  <div className="text-[22px] font-bold tracking-tight leading-none">{s.val}</div>
-                  <div className="text-[9px] text-text-light mt-0.5">{s.sub}</div>
-                  <div className="rounded-sm mt-2" style={{ height: 3, background: `${s.color}33` }}>
-                    <div className="rounded-sm" style={{ width: '60%', height: '100%', background: s.color }} />
+                <div key={s.label} style={{ padding: '10px 12px', background: 'white', borderRadius: 8, border: `1px solid ${borderLight}`, borderTop: `2.5px solid ${s.color}` }}>
+                  <div style={{ fontSize: 8, fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.04em', color: s.color, marginBottom: 6 }}>{s.label}</div>
+                  <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1 }}>{s.val}</div>
+                  <div style={{ fontSize: 9, color: textLight, marginTop: 2 }}>{s.sub}</div>
+                  <div style={{ height: 3, borderRadius: 2, background: `${s.color}33`, marginTop: 8 }}>
+                    <div style={{ width: '60%', height: '100%', borderRadius: 2, background: s.color }} />
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Activity + Quick Actions */}
-            <div className="grid md:grid-cols-[1fr_150px] gap-4">
-              {/* Activity Feed */}
+            {/* Activity + sidebar */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 150px', gap: 16 }}>
               <div>
-                <div className="text-[13px] font-semibold mb-2.5">Recent Activity</div>
+                <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 10 }}>Recent Activity</div>
                 {activity.map((a, i) => (
-                  <div key={i} className="flex items-center gap-2 py-1.5 border-b border-border-light">
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: a.dot }} />
-                    <span className="text-[10.5px] text-text flex-1">
-                      {a.text} <span className="text-text-light">{a.by}</span>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0', borderBottom: `1px solid ${borderLight}` }}>
+                    <span style={{ width: 6, height: 6, borderRadius: 6, background: a.dot, flexShrink: 0 }} />
+                    <span style={{ fontSize: 10.5, color: '#111827', flex: 1 }}>
+                      {a.text} <span style={{ color: textLight }}>{a.by}</span>
                     </span>
-                    <span className="text-[9px] text-text-light shrink-0">{a.time}</span>
+                    <span style={{ fontSize: 9, color: textLight, flexShrink: 0 }}>{a.time}</span>
                   </div>
                 ))}
               </div>
-
-              {/* Right Panel */}
-              <div className="hidden md:flex flex-col gap-3">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {/* Quick Actions */}
-                <div className="border border-border-light rounded-lg p-3">
-                  <div className="text-[11px] font-semibold mb-2">Quick Actions</div>
-                  {quickActions.map((a) => (
-                    <div key={a} className="text-[10px] px-2 py-1.5 border border-border-light rounded mb-1 text-text-secondary">{a}</div>
+                <div style={{ padding: 12, border: `1px solid ${borderLight}`, borderRadius: 8 }}>
+                  <div style={{ fontSize: 11, fontWeight: 600, marginBottom: 8 }}>Quick Actions</div>
+                  {['+ New Screen', '+ Add Content', '↑ Publish All', '+ Invite User'].map((a) => (
+                    <div key={a} style={{ fontSize: 10, padding: '5px 8px', border: `1px solid ${borderLight}`, borderRadius: 5, marginBottom: 4, color: textSec }}>{a}</div>
                   ))}
                 </div>
-
                 {/* Screen Health */}
-                <div className="border border-border-light rounded-lg p-3">
-                  <div className="text-[11px] font-semibold mb-1">Screen Health</div>
-                  <div className="text-[20px] font-bold">85%</div>
-                  <div className="text-[9px] text-text-light">device uptime</div>
+                <div style={{ padding: 12, border: `1px solid ${borderLight}`, borderRadius: 8 }}>
+                  <div style={{ fontSize: 11, fontWeight: 600, marginBottom: 4 }}>Screen Health</div>
+                  <div style={{ fontSize: 20, fontWeight: 700 }}>85%</div>
+                  <div style={{ fontSize: 9, color: textLight }}>device uptime</div>
                 </div>
               </div>
             </div>
