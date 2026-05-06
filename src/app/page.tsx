@@ -112,11 +112,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <RevealOnScroll>
             <p className="text-center text-sm text-text-light font-medium uppercase tracking-widest mb-8">Trusted across industries</p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-4">
               {useCases.map((uc) => (
-                <div key={uc.label} className="flex items-center gap-2.5 px-5 py-3 bg-white text-text rounded-xl border border-border shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all cursor-default">
-                  <span className="text-xl">{uc.icon}</span>
-                  <span className="text-sm font-semibold">{uc.label}</span>
+                <div key={uc.label} className="flex flex-col items-center gap-3 px-3 py-5 bg-white rounded-2xl border border-border shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 transition-all cursor-default">
+                  <span className="text-5xl">{uc.icon}</span>
+                  <span className="text-xs font-semibold text-text text-center leading-tight">{uc.label}</span>
                 </div>
               ))}
             </div>
