@@ -7,15 +7,15 @@ import ScreenCarousel from '@/components/ScreenCarousel';
 import RevealOnScroll from '@/components/RevealOnScroll';
 
 const useCases = [
-  'Restaurants',
-  'Retail Stores',
-  'Grocery & Supermarkets',
-  'Corporate Offices',
-  'Schools & Universities',
-  'Clinics & Hospitals',
-  'Community Centers',
-  'Events & Conferences',
-  'Hotels & Hospitality',
+  { icon: '🍽️', label: 'Restaurants' },
+  { icon: '🛍️', label: 'Retail Stores' },
+  { icon: '🛒', label: 'Grocery & Supermarkets' },
+  { icon: '🏢', label: 'Corporate Offices' },
+  { icon: '🎓', label: 'Schools & Universities' },
+  { icon: '🏥', label: 'Clinics & Hospitals' },
+  { icon: '🏛️', label: 'Community Centers' },
+  { icon: '🎪', label: 'Events & Conferences' },
+  { icon: '🏨', label: 'Hotels & Hospitality' },
 ];
 
 const howItWorks = [
@@ -108,14 +108,16 @@ export default function Home() {
       </section>
 
       {/* Use Cases Strip */}
-      <section className="py-12 px-6 bg-white border-y border-border">
+      <section className="py-16 px-6 bg-bg-soft border-y border-border">
         <div className="max-w-7xl mx-auto">
           <RevealOnScroll>
-            <div className="flex flex-wrap justify-center gap-3">
+            <p className="text-center text-sm text-text-light font-medium uppercase tracking-widest mb-8">Trusted across industries</p>
+            <div className="flex flex-wrap justify-center gap-4">
               {useCases.map((uc) => (
-                <span key={uc} className="px-4 py-2 bg-bg-soft text-text-secondary text-sm font-medium rounded-full border border-border">
-                  {uc}
-                </span>
+                <div key={uc.label} className="flex items-center gap-2.5 px-5 py-3 bg-white text-text rounded-xl border border-border shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all cursor-default">
+                  <span className="text-xl">{uc.icon}</span>
+                  <span className="text-sm font-semibold">{uc.label}</span>
+                </div>
               ))}
             </div>
           </RevealOnScroll>
