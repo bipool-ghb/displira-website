@@ -16,62 +16,70 @@ interface Tier {
   ctaHref: string;
 }
 
+const valueChips = [
+  'Real-time publishing',
+  'Multi-location ready',
+  'Hardware-flexible',
+  'Device monitoring',
+  'Enterprise-ready',
+];
+
 const tiers: Tier[] = [
   {
     name: 'Starter',
     monthlyPrice: '$35',
     annualPrice: '$29',
-    description: 'Perfect for small businesses getting started with digital signage.',
+    description: 'Perfect for restaurants, retail stores, and small businesses launching digital signage.',
     features: [
-      '1-5 screens',
-      '1-10 devices',
-      'Basic templates',
+      'Up to 5 screens',
+      'Up to 10 devices',
+      'Drag-and-drop content builder',
+      'Ready-to-use templates',
       'Basic scheduling',
-      'Email support',
-      'Single location',
       'Image & video support',
+      'Single-location management',
+      'Email support',
     ],
-    cta: 'Get Started',
+    cta: 'Start Free Trial',
     ctaHref: '/demo',
   },
   {
     name: 'Professional',
     monthlyPrice: '$95',
     annualPrice: '$79',
-    description: 'For growing businesses that need more power and flexibility.',
+    description: 'Built for growing businesses managing multiple screens and locations.',
     features: [
-      '6-10 screens',
-      '11-20 devices',
-      'Advanced templates',
+      '6\u201310 screens',
+      '11\u201320 devices',
+      'Advanced templates & layouts',
       'Device grouping & tags',
+      'Multi-location management',
+      'Real-time publishing',
       'Analytics dashboard',
-      'Feedback forms',
-      'Multi-location',
-      'Priority email support',
       'Scheduling by time & location',
+      'Priority support',
     ],
     popular: true,
-    cta: 'Get Started',
+    cta: 'Start Professional Plan',
     ctaHref: '/demo',
   },
   {
     name: 'Enterprise',
     monthlyPrice: 'Custom',
     annualPrice: 'Custom',
-    description: 'For large organizations with advanced needs and dedicated support.',
+    description: 'Enterprise-grade digital signage platform with advanced security and deployment support.',
     features: [
-      'Unlimited screens',
-      'SSO-ready',
-      'Custom hardware support',
-      'Dedicated account manager',
-      'Priority phone support',
-      'Professional services',
+      'Unlimited screens & devices',
+      'SSO & role-based access',
       'Multi-tenant management',
-      'Role-based access control',
+      'Dedicated account manager',
+      'Professional onboarding',
       'Custom integrations',
-      'SLA guarantee',
+      'SLA-backed support',
+      'Deployment & hardware guidance',
+      'Enterprise security controls',
     ],
-    cta: 'Contact Sales',
+    cta: 'Talk to Sales',
     ctaHref: '/contact',
   },
 ];
@@ -88,6 +96,26 @@ export default function PricingPage() {
             title="Simple, Transparent Pricing"
             subtitle="Start small and scale as you grow. No hidden fees, no long-term contracts."
           />
+
+          {/* Value strip */}
+          <RevealOnScroll>
+            <p className="text-text-secondary text-sm max-w-2xl mx-auto mb-5">
+              No proprietary hardware required. Displira works with Fire TV, Android TV, Smart TVs, mini PCs, and commercial displays.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+              {valueChips.map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-primary bg-primary/8 rounded-full"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </RevealOnScroll>
 
           {/* Toggle */}
           <RevealOnScroll>
@@ -143,7 +171,7 @@ export default function PricingPage() {
                 <ul className="flex-1 flex flex-col gap-3 mb-8">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5 text-sm text-text-secondary">
-                      <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                       {feature}
@@ -166,9 +194,16 @@ export default function PricingPage() {
           ))}
         </div>
 
+        {/* Volume pricing note */}
+        <RevealOnScroll>
+          <p className="text-center text-sm text-text-secondary mt-8 max-w-xl mx-auto">
+            Need more screens or a custom deployment? <Link href="/contact" className="text-primary font-medium hover:underline">Contact us</Link> for volume pricing and implementation support.
+          </p>
+        </RevealOnScroll>
+
         {/* Pilot CTA */}
         <RevealOnScroll>
-          <div className="max-w-3xl mx-auto mt-16 text-center bg-bg-soft rounded-2xl p-8 border border-border">
+          <div className="max-w-3xl mx-auto mt-12 text-center bg-bg-soft rounded-2xl p-8 border border-border">
             <h3 className="text-xl font-bold text-text mb-2">Want to try before you commit?</h3>
             <p className="text-text-secondary mb-6">
               Start with a free pilot program. Set up a few screens and experience Displira with no obligation.
