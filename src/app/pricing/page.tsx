@@ -23,7 +23,8 @@ const tiers: Tier[] = [
     annualPrice: '$29',
     description: 'Perfect for small businesses getting started with digital signage.',
     features: [
-      '1-3 screens',
+      '1-5 screens',
+      '1-10 devices',
       'Basic templates',
       'Basic scheduling',
       'Email support',
@@ -34,12 +35,13 @@ const tiers: Tier[] = [
     ctaHref: '/demo',
   },
   {
-    name: 'Business',
+    name: 'Professional',
     monthlyPrice: '$95',
     annualPrice: '$79',
     description: 'For growing businesses that need more power and flexibility.',
     features: [
-      '4-15 screens',
+      '6-10 screens',
+      '11-20 devices',
       'Advanced templates',
       'Device grouping & tags',
       'Analytics dashboard',
