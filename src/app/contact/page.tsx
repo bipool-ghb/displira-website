@@ -9,19 +9,13 @@ const contactInfo = [
   {
     icon: '📧',
     title: 'Email',
-    value: 'hello@displira.com',
-    href: 'mailto:hello@displira.com',
-  },
-  {
-    icon: '💬',
-    title: 'WhatsApp',
-    value: '+880 1XXX-XXXXXX',
-    href: 'https://wa.me/8801XXXXXXXXX',
+    value: 'support@displira.com',
+    href: 'mailto:support@displira.com',
   },
   {
     icon: '📍',
     title: 'Location',
-    value: 'Dhaka, Bangladesh',
+    value: 'California, United States',
     href: null,
   },
 ];
