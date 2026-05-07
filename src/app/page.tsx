@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import SectionHeader from '@/components/SectionHeader';
 import FeatureCard from '@/components/FeatureCard';
 import DashboardMockup from '@/components/DashboardMockup';
@@ -85,10 +86,10 @@ const displiraItems = [
 ];
 
 const onboardingSteps = [
-  { step: 1, title: 'Plug in your device', mockContent: '🔌', mockLabel: 'Fire TV Stick' },
-  { step: 2, title: 'Enter pairing code or scan QR', mockContent: '482 913', mockLabel: 'Pairing Code' },
-  { step: 3, title: 'Assign a screen from admin portal', mockContent: '🖥️', mockLabel: 'Screen Assignment' },
-  { step: 4, title: 'Publish content instantly', mockContent: '🚀', mockLabel: 'Live Content' },
+  { step: 1, title: 'Pair Device', caption: 'Enter a code or scan a QR to connect your device', type: 'image' as const },
+  { step: 2, title: 'Device Connected', caption: 'Instant confirmation when the device is ready', type: 'paired' as const },
+  { step: 3, title: 'Assign Screen', caption: 'Assign content or layouts from the admin portal', type: 'assign' as const },
+  { step: 4, title: 'Content Live', caption: 'Content appears instantly on the display', type: 'live' as const },
 ];
 
 const useCasePreviewCards = [
@@ -337,22 +338,84 @@ export default function Home() {
           <SectionHeader
             badge="Onboarding"
             title="From Device to Live Screen in Minutes"
-            subtitle="Get your signage up and running with a simple four-step process."
+            subtitle="Pair devices, assign screens, and publish content in a simple guided flow."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {onboardingSteps.map((item, i) => (
-              <RevealOnScroll key={item.step} delay={i * 0.1}>
-                <div className="bg-bg-dark rounded-2xl p-6 text-center h-full border border-white/10">
-                  <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-4">Step {item.step}</div>
-                  <div className="w-full h-32 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center justify-center mb-5">
-                    <span className="text-4xl mb-2">{item.mockContent}</span>
-                    <span className="text-xs text-white/40">{item.mockLabel}</span>
+              <RevealOnScroll key={item.step} delay={i * 0.12}>
+                <div className="relative bg-bg-dark rounded-2xl overflow-hidden h-full border border-white/10 hover:border-primary/30 transition-all group">
+                  {/* Step connector on desktop */}
+                  {i < 3 && <div className="hidden lg:block absolute top-1/2 -right-2.5 w-5 border-t-2 border-dashed border-primary/30 z-10" aria-hidden="true" />}
+
+                  {/* Step number */}
+                  <div className="flex items-center justify-between px-5 pt-5 pb-3">
+                    <span className="text-xs font-bold text-primary uppercase tracking-widest">Step 0{item.step}</span>
+                    <span className="text-lg font-bold text-white/10">0{item.step}</span>
                   </div>
-                  <h3 className="text-sm font-bold text-white">{item.title}</h3>
+
+                  {/* Visual mock */}
+                  <div className="px-4 pb-3">
+                    {item.type === 'image' ? (
+                      <div className="rounded-xl overflow-hidden border border-white/10 shadow-lg">
+                        <Image src="/pair-screen.png" alt="Displira device pairing screen showing code 865 949 and QR code" width={400} height={225} className="w-full h-auto" />
+                      </div>
+                    ) : item.type === 'paired' ? (
+                      <div className="rounded-xl bg-[#0F1629] border border-white/10 p-5 flex flex-col items-center justify-center" style={{ minHeight: 140 }}>
+                        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-3">
+                          <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                        </div>
+                        <span className="text-sm font-bold text-white">Device Paired</span>
+                        <span className="text-[10px] text-white/40 mt-1">Successfully connected</span>
+                      </div>
+                    ) : item.type === 'assign' ? (
+                      <div className="rounded-xl bg-[#0F1629] border border-white/10 p-4" style={{ minHeight: 140 }}>
+                        <div className="text-[9px] text-white/30 uppercase tracking-wider mb-2">Admin Portal</div>
+                        <div className="flex items-center gap-2 bg-white/5 rounded-lg p-2.5 mb-2 border border-white/10">
+                          <span className="w-6 h-6 rounded bg-primary/20 flex items-center justify-center text-[10px]">🖥️</span>
+                          <div>
+                            <div className="text-[10px] font-semibold text-white">Main Entrance</div>
+                            <div className="text-[8px] text-white/40">Menu Board Layout</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white/5 rounded-lg p-2.5 border border-white/10">
+                          <span className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center text-[10px]">📱</span>
+                          <div>
+                            <div className="text-[10px] font-semibold text-white">Fire TV — Store #1</div>
+                            <div className="text-[8px] text-primary">● Online</div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rounded-xl overflow-hidden border border-white/10" style={{ minHeight: 140, background: 'linear-gradient(135deg, #1a0a00, #2d1810)' }}>
+                        <div className="p-4">
+                          <div className="text-[10px] font-bold text-amber-300/80 uppercase tracking-wider mb-2">Chef&apos;s Selection</div>
+                          {[['Grilled Salmon', '$28'], ['Wagyu Ribeye', '$52'], ['Lobster Risotto', '$36']].map(([name, price]) => (
+                            <div key={name} className="flex justify-between py-1 border-b border-white/5">
+                              <span className="text-[9px] text-white/80">{name}</span>
+                              <span className="text-[9px] text-amber-300/70 font-bold">{price}</span>
+                            </div>
+                          ))}
+                          <div className="text-[7px] text-white/20 text-center mt-2">Powered by Displira</div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Title + Caption */}
+                  <div className="px-5 pb-5 pt-2">
+                    <h3 className="text-sm font-bold text-white mb-1">{item.title}</h3>
+                    <p className="text-xs text-white/50 leading-relaxed">{item.caption}</p>
+                  </div>
                 </div>
               </RevealOnScroll>
             ))}
           </div>
+          {/* Micro-copy */}
+          <RevealOnScroll delay={0.5}>
+            <p className="text-center text-sm text-text-light mt-8">
+              Works with Fire TV, Android TV, Smart TVs, and commercial displays — no proprietary hardware required.
+            </p>
+          </RevealOnScroll>
         </div>
       </section>
 
