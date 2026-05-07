@@ -8,6 +8,13 @@ const productLinks = [
   { href: '/use-cases', label: 'Use Cases' },
 ];
 
+const solutionLinks = [
+  { href: '/use-cases', label: 'Restaurants' },
+  { href: '/use-cases', label: 'Retail' },
+  { href: '/use-cases', label: 'Corporate Offices' },
+  { href: '/use-cases', label: 'Grocery & Supermarkets' },
+];
+
 const companyLinks = [
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
@@ -16,17 +23,17 @@ const companyLinks = [
 
 const getStartedLinks = [
   { href: '/demo', label: 'Request a Demo' },
-  { href: '/pricing', label: 'View Pricing' },
-  { href: '/contact', label: 'Contact Sales' },
+  { href: '/contact', label: 'See Live Demo' },
+  { href: '/demo', label: 'Start Free Pilot' },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-bg-dark text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
-          <div>
+          <div className="lg:col-span-1">
             <Image
               src="/logo-dark.png"
               alt="Displira"
@@ -34,8 +41,9 @@ export default function Footer() {
               height={36}
               className="mb-4"
             />
+            <p className="text-white/80 text-sm font-semibold mb-2">Digital Signage. Simplified.</p>
             <p className="text-text-light text-sm leading-relaxed">
-              Modern digital signage platform for businesses of all sizes. Create, manage, and publish content to any screen.
+              Displira helps businesses create, publish, and monitor content across screens, devices, and locations.
             </p>
           </div>
 
@@ -44,7 +52,21 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-text-light mb-4">Product</h4>
             <ul className="flex flex-col gap-2.5">
               {productLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Solutions */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-text-light mb-4">Solutions</h4>
+            <ul className="flex flex-col gap-2.5">
+              {solutionLinks.map((link) => (
+                <li key={link.label}>
                   <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {link.label}
                   </Link>
@@ -58,7 +80,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-text-light mb-4">Company</h4>
             <ul className="flex flex-col gap-2.5">
               {companyLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {link.label}
                   </Link>
@@ -72,7 +94,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-text-light mb-4">Get Started</h4>
             <ul className="flex flex-col gap-2.5">
               {getStartedLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {link.label}
                   </Link>
@@ -82,8 +104,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center">
+        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-text-light">&copy; 2026 Displira. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link href="#" className="text-sm text-text-light hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="text-sm text-text-light hover:text-white transition-colors">Terms of Service</Link>
+          </div>
         </div>
       </div>
     </footer>

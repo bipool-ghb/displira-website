@@ -61,9 +61,76 @@ const hardwareItems = [
   { icon: '💻', name: 'Mini PC / Android Box', desc: 'Compact dedicated players', specs: ['Multiple outputs', 'Full OS', 'Kiosk mode'] },
 ];
 
+const roiCards = [
+  { icon: '💰', title: 'Lower Hardware Cost', description: 'Use Fire TV Sticks, Android TVs, or any smart display instead of expensive proprietary media players. Save hundreds per screen.' },
+  { icon: '⚡', title: 'Faster Updates', description: 'Publish content changes in seconds, not hours. No more USB drives, manual uploads, or waiting for on-site staff.' },
+  { icon: '🏢', title: 'Centralized Operations', description: 'Manage all screens, locations, and devices from a single cloud dashboard. Reduce travel, calls, and coordination overhead.' },
+  { icon: '🛡️', title: 'Less Downtime', description: 'Device health monitoring and alerts help you catch issues before they affect your screens. Keep displays running reliably.' },
+];
+
+const traditionalItems = [
+  'Expensive hardware',
+  'Manual updates',
+  'Hard to manage multiple locations',
+  'Limited visibility into device status',
+  'Slow content changes',
+];
+
+const displiraItems = [
+  'Works with affordable devices',
+  'Real-time publishing',
+  'Multi-location cloud dashboard',
+  'Device health monitoring',
+  'Fast scheduling and campaign updates',
+];
+
+const onboardingSteps = [
+  { step: 1, title: 'Plug in your device', mockContent: '🔌', mockLabel: 'Fire TV Stick' },
+  { step: 2, title: 'Enter pairing code or scan QR', mockContent: '482 913', mockLabel: 'Pairing Code' },
+  { step: 3, title: 'Assign a screen from admin portal', mockContent: '🖥️', mockLabel: 'Screen Assignment' },
+  { step: 4, title: 'Publish content instantly', mockContent: '🚀', mockLabel: 'Live Content' },
+];
+
+const useCasePreviewCards = [
+  { icon: '🍽️', title: 'Restaurants', items: ['Menu boards', 'Daily specials', 'Combo offers', 'Kitchen notices'] },
+  { icon: '🛍️', title: 'Retail', items: ['Promotions', 'Campaigns', 'Seasonal offers', 'Product highlights'] },
+  { icon: '🏢', title: 'Corporate Offices', items: ['Announcements', 'Dashboards', 'Visitor messages', 'Internal communication'] },
+  { icon: '🛒', title: 'Grocery & Supermarkets', items: ['Price boards', 'Fresh deals', 'Department screens', 'Rotating promotions'] },
+];
+
+const builtForScaleCards = [
+  { icon: '🏗️', title: 'Multi-Tenant Foundation', description: 'Each organization operates in its own isolated space with separate users, devices, screens, and content.' },
+  { icon: '🔐', title: 'Role-Based Access', description: 'Owner, Admin, Editor, and Viewer roles let you control who can create, edit, publish, and manage across the platform.' },
+  { icon: '📱', title: 'Device Control Plane', description: 'Pair, monitor, reboot, and manage devices remotely. Track connectivity, app version, and screen assignment from one place.' },
+  { icon: '🚀', title: 'Real-Time Publishing Engine', description: 'Push content updates instantly to screens across locations. No waiting, no syncing, no delays.' },
+  { icon: '📊', title: 'Monitoring & Visibility', description: 'View device health, screen status, and publishing activity in real time from a centralized dashboard.' },
+  { icon: '🌐', title: 'Deployment Ready', description: 'Cloud-hosted, API-accessible, and designed for fast rollout across multiple sites with minimal setup.' },
+];
+
+const reliableByDesignCards = [
+  { icon: '💓', title: 'Device Health Monitoring', description: 'Track device connectivity, status, and health in real time. Know which screens are online, offline, or need attention.' },
+  { icon: '📴', title: 'Offline-Friendly Player Experience', description: 'Players cache content locally so screens keep running even if the network drops temporarily.' },
+  { icon: '📊', title: 'Centralized Status Dashboard', description: 'See all your devices, screens, and locations in one view. Filter by status, location, or device type.' },
+  { icon: '📜', title: 'Publishing History', description: 'Track what was published, when, and by whom. Maintain a clear audit trail for every content update.' },
+  { icon: '🔔', title: 'Faster Issue Detection', description: 'Get visibility into device issues quickly so your team can respond before screens go dark.' },
+  { icon: '🔄', title: 'Clear Device Lifecycle', description: 'From pairing to decommission, manage the full lifecycle of every device in your network.' },
+];
+
 const CheckIcon = () => (
   <svg className="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+  </svg>
+);
+
+const GreenCheck = () => (
+  <svg className="w-5 h-5 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+  </svg>
+);
+
+const RedX = () => (
+  <svg className="w-5 h-5 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
   </svg>
 );
 
@@ -95,7 +162,7 @@ export default function Home() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.25}>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-10 text-sm text-text-secondary">
+            <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-8 mb-10 text-sm text-text-secondary">
               <span className="flex items-center gap-2 justify-center"><span className="w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" /> Multi-location screen management</span>
               <span className="flex items-center gap-2 justify-center"><span className="w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" /> Real-time publishing &amp; scheduling</span>
               <span className="flex items-center gap-2 justify-center"><span className="w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" /> Works with Fire TV, Android TV, Smart TVs</span>
@@ -127,8 +194,8 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <RevealOnScroll>
             <p className="text-center text-white/60 text-sm mb-5">Built for growing businesses, multi-location teams, and enterprise-ready deployments.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12">
-              {['Multi-location ready', 'Hardware-flexible', 'Real-time publishing'].map((t) => (
+            <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 flex-wrap">
+              {['Multi-location ready', 'Hardware-flexible', 'Real-time publishing', 'Device monitoring', 'Role-based access'].map((t) => (
                 <span key={t} className="flex items-center gap-2 text-white/80 text-sm font-medium justify-center">
                   <CheckIcon /> {t}
                 </span>
@@ -150,6 +217,66 @@ export default function Home() {
                   <span className="text-xs font-semibold text-text text-center leading-tight">{uc.label}</span>
                 </div>
               ))}
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* ROI Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            badge="ROI"
+            title="Why Displira Saves Time and Cost"
+            subtitle="Reduce hardware spend, speed up updates, and simplify operations across every location."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {roiCards.map((item, i) => (
+              <RevealOnScroll key={item.title} delay={i * 0.08}>
+                <div className="group bg-white border border-border rounded-2xl p-7 hover:shadow-xl hover:border-primary/20 transition-all duration-300 h-full relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl pointer-events-none" style={{ background: '#0D8A6A15' }} aria-hidden="true" />
+                  <span className="text-3xl block mb-4" role="img" aria-hidden="true">{item.icon}</span>
+                  <h3 className="text-lg font-bold text-text mb-2">{item.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Traditional vs Displira */}
+      <section className="py-24 px-6 bg-bg-soft">
+        <div className="max-w-5xl mx-auto">
+          <SectionHeader
+            badge="Comparison"
+            title="Traditional Signage vs. Displira"
+            subtitle="See how Displira modernizes every aspect of digital signage management."
+          />
+          <RevealOnScroll>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Traditional */}
+              <div className="bg-white border border-border rounded-2xl p-8">
+                <h3 className="text-lg font-bold text-text mb-6">Traditional Signage</h3>
+                <ul className="flex flex-col gap-4">
+                  {traditionalItems.map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-text-secondary">
+                      <RedX /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* Displira */}
+              <div className="bg-white border border-primary/20 rounded-2xl p-8 shadow-lg">
+                <h3 className="text-lg font-bold text-primary mb-6">Displira</h3>
+                <ul className="flex flex-col gap-4">
+                  {displiraItems.map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-text-secondary">
+                      <GreenCheck /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </RevealOnScroll>
         </div>
@@ -204,8 +331,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Screen Carousel */}
+      {/* Setup / Onboarding */}
       <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            badge="Onboarding"
+            title="From Device to Live Screen in Minutes"
+            subtitle="Get your signage up and running with a simple four-step process."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {onboardingSteps.map((item, i) => (
+              <RevealOnScroll key={item.step} delay={i * 0.1}>
+                <div className="bg-bg-dark rounded-2xl p-6 text-center h-full border border-white/10">
+                  <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-4">Step {item.step}</div>
+                  <div className="w-full h-32 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center justify-center mb-5">
+                    <span className="text-4xl mb-2">{item.mockContent}</span>
+                    <span className="text-xs text-white/40">{item.mockLabel}</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-white">{item.title}</h3>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Screen Carousel */}
+      <section className="py-24 px-6 bg-bg-soft">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="See It in Action"
@@ -213,6 +365,38 @@ export default function Home() {
             subtitle="From restaurant menus to corporate dashboards — see what your displays could look like."
           />
           <ScreenCarousel />
+        </div>
+      </section>
+
+      {/* Use Case Preview */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            badge="Use Cases"
+            title="Built for the Way Your Business Communicates"
+            subtitle="Displira adapts to the unique needs of every industry and environment."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {useCasePreviewCards.map((card, i) => (
+              <RevealOnScroll key={card.title} delay={i * 0.08}>
+                <div className="group bg-white border border-border rounded-2xl p-7 hover:shadow-xl hover:border-primary/20 transition-all duration-300 h-full flex flex-col">
+                  <span className="text-3xl block mb-4" role="img" aria-hidden="true">{card.icon}</span>
+                  <h3 className="text-lg font-bold text-text mb-3">{card.title}</h3>
+                  <ul className="flex flex-col gap-2 mb-6 flex-1">
+                    {card.items.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm text-text-secondary">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/use-cases" className="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">
+                    Explore use cases →
+                  </Link>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -228,6 +412,9 @@ export default function Home() {
               </Link>
               <Link href="/pricing" className="px-8 py-3.5 border-2 border-border text-text font-semibold rounded-full hover:border-primary hover:text-primary transition-colors" aria-label="View pricing">
                 View Pricing
+              </Link>
+              <Link href="/demo" className="px-8 py-3.5 text-primary font-semibold rounded-full hover:bg-primary/5 transition-colors" aria-label="Start free pilot">
+                Start Free Pilot
               </Link>
             </div>
           </RevealOnScroll>
@@ -250,8 +437,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hardware */}
+      {/* Built for Scale */}
       <section className="py-24 px-6 bg-bg-soft">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            badge="Scale"
+            title="Built for Growing Teams and Multi-Location Operations"
+            subtitle="Displira is designed from the ground up to support multi-tenant organizations, distributed teams, and large-scale deployments."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {builtForScaleCards.map((item, i) => (
+              <RevealOnScroll key={item.title} delay={i * 0.08}>
+                <div className="group bg-white border border-border rounded-2xl p-7 hover:shadow-xl hover:border-primary/20 transition-all duration-300 h-full relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl pointer-events-none" style={{ background: '#0D8A6A15' }} aria-hidden="true" />
+                  <span className="text-3xl block mb-4" role="img" aria-hidden="true">{item.icon}</span>
+                  <h3 className="text-lg font-bold text-text mb-2">{item.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hardware */}
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="Hardware Flexible"
@@ -270,6 +480,29 @@ export default function Home() {
                       <span key={s} className="text-[10px] px-2 py-0.5 bg-bg-soft text-text-light rounded-full border border-border">{s}</span>
                     ))}
                   </div>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reliable by Design */}
+      <section className="py-24 px-6 bg-bg-soft">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            badge="Reliability"
+            title="Reliable by Design"
+            subtitle="Displira helps teams keep screens running, updated, and visible from one place."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {reliableByDesignCards.map((item, i) => (
+              <RevealOnScroll key={item.title} delay={i * 0.08}>
+                <div className="group bg-white border border-border rounded-2xl p-7 hover:shadow-xl hover:border-primary/20 transition-all duration-300 h-full relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl pointer-events-none" style={{ background: '#0D8A6A15' }} aria-hidden="true" />
+                  <span className="text-3xl block mb-4" role="img" aria-hidden="true">{item.icon}</span>
+                  <h3 className="text-lg font-bold text-text mb-2">{item.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -305,11 +538,11 @@ export default function Home() {
           <div className="max-w-5xl mx-auto rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #065F46 0%, #0D8A6A 50%, #10B981 100%)' }}>
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} aria-hidden="true" />
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Launch Professional Digital Signage for Your Business</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Launch Digital Signage That Scales With Your Business</h2>
               <p className="text-lg text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Flexible software, affordable hardware options, and a platform built to scale — from a single screen to hundreds across locations.
+                Start with one screen, expand across locations, and manage everything from a cloud platform built for flexible hardware and real-time publishing.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
                 <Link href="/demo" className="px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-white/90 transition-all shadow-lg hover:-translate-y-0.5" aria-label="Request a demo">
                   Request a Demo
                 </Link>
@@ -317,6 +550,9 @@ export default function Home() {
                   See Live Demo
                 </Link>
               </div>
+              <Link href="/demo" className="text-sm text-white/70 hover:text-white transition-colors underline underline-offset-4">
+                Or start a free pilot →
+              </Link>
             </div>
           </div>
         </RevealOnScroll>
