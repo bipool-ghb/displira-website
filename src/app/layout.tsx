@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Displira — Modern Digital Signage Made Simple',
+  title: 'Displira — Cloud Digital Signage Platform for Modern Businesses',
   description:
-    'Create, manage, and publish beautiful digital signage content to any screen. Cloud-based CMS for restaurants, retail, corporate, and more.',
+    'Control every screen from one platform. Create, schedule, publish, and monitor digital signage across restaurants, retail, offices, schools, clinics, and multi-location businesses. No expensive proprietary hardware required.',
 };
 
 export default function RootLayout({
