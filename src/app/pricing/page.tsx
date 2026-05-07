@@ -49,8 +49,8 @@ const tiers: Tier[] = [
     annualPrice: '$79',
     description: 'Built for growing businesses managing multiple screens and locations.',
     features: [
-      '6\u201310 screens',
-      '11\u201320 devices',
+      'Up to 10 screens',
+      'Up to 20 devices',
       'Advanced templates & layouts',
       'Device grouping & tags',
       'Multi-location management',
