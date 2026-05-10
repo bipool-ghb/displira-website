@@ -12,13 +12,15 @@ export default function FeedbackPage() {
     e.preventDefault();
     setLoading(true);
     const form = e.currentTarget;
-    const data = new FormData(form);
+    const fd = new FormData(form);
+    const payload: Record<string, string> = {};
+    fd.forEach((v, k) => { payload[k] = v.toString(); });
 
     try {
-      await fetch('https://formspree.io/f/placeholder', {
+      await fetch('https://api.displira.com/api/v1/inquiries/feedback', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
       });
       setSubmitted(true);
     } catch {
